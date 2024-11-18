@@ -1,7 +1,3 @@
-//
-// Created by Mohamad on 17/11/2024.
-//
-
 #ifndef PONG_WINDOW_H
 #define PONG_WINDOW_H
 #include <SFML/Graphics.hpp>

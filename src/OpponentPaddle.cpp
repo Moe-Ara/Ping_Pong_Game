@@ -1,7 +1,3 @@
-//
-// Created by Mohamad on 17/11/2024.
-//
-
 #include "OpponentPaddle.h"
 #include "Window.h"
 
@@ -34,15 +30,13 @@ void OpponentPaddle::update(float deltaTime) {
     if(IsCPU){
         throw std::exception("ERROR: You are using 'Update(deltaTime)' with CPU flag. Try calling 'Update(deltaTime, BallPosition)'");
     }
-    // Use input to move paddle
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
         moveUp(deltaTime);
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
         moveDown(deltaTime);
     }
 
-    // Ensure paddle stays within the window bounds (assumes window height = 600)
     if (shape.getPosition().y < shape.getSize().y / 2.f) {
         shape.setPosition(shape.getPosition().x, shape.getSize().y / 2.f);
     }

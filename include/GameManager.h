@@ -1,7 +1,3 @@
-//
-// Created by Mohamad on 18/11/2024.
-//
-
 #ifndef PONG_GAMEMANAGER_H
 #define PONG_GAMEMANAGER_H
 

@@ -1,7 +1,3 @@
-//
-// Created by Mohamad on 17/11/2024.
-//
-
 #ifndef PONG_OPPONENTPADDLE_H
 #define PONG_OPPONENTPADDLE_H
 #include "Paddle.h"

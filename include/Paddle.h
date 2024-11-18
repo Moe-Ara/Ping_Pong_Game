@@ -1,7 +1,3 @@
-//
-// Created by Mohamad on 17/11/2024.
-//
-
 #ifndef PONG_PADDLE_H
 #define PONG_PADDLE_H
 

@@ -1,8 +1,3 @@
-//
-// Created by Mohamad on 17/11/2024.
-//
-
-
 #include "Ball.h"
 #include "Window.h"
 

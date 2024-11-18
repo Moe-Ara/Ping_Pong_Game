@@ -1,9 +1,5 @@
-//
-// Created by Mohamad on 17/11/2024.
-//
 #include "Window.h"
 
-// Initialize static unique pointer
 std::unique_ptr<Window> Window::s_instance = nullptr;
 
 sf::RenderWindow &Window::getInstance(const std::string &title, int width, int height) {

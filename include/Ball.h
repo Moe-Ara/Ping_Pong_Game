@@ -1,7 +1,3 @@
-//
-// Created by Mohamad on 17/11/2024.
-//
-
 #ifndef PONG_BALL_H
 #define PONG_BALL_H
 
