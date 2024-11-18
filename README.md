@@ -105,6 +105,8 @@ Feel free to fork this project, make changes, and submit pull requests. If you h
 ## License
 
 This project is open-source and available under the MIT License. See the [LICENSE](LICENSE) file for more information.
+## Font Attribution
+This project uses fonts provided by [Google Fonts](https://fonts.google.com/). The fonts are licensed under the [Open Font License (OFL)](https://opensource.org/licenses/OFL) or [Apache License 2.0](https://opensource.org/licenses/Apache-2.0), depending on the font.
 
 ---
 
