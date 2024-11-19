@@ -8,6 +8,7 @@
 #include "Ball.h"
 #include "Paddle.h"
 #include "OpponentPaddle.h"
+#include "AudioManager.h"
 
 class GameManager {
 public:
@@ -15,7 +16,7 @@ public:
     virtual ~GameManager()=default;
     void drawDottedLine(sf::RenderWindow &window, float startY, float endY, float x, float dotLength, float gapLength);
     void startGame();
-    void drawScores();
+    void drawUI();
     void scoreCallback(int player);
 private:
     int leftScore,rightScore;
@@ -24,7 +25,7 @@ private:
     sf::Clock clock;
     Paddle playerPaddle;
     OpponentPaddle opponentPaddle;
-    sf::Text leftScoreText, rightScoreText;
+    sf::Text leftScoreText, rightScoreText, UIText;
     sf::Font font;
 };
 

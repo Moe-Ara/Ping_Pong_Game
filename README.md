@@ -60,7 +60,7 @@ Once the game is compiled and running, control your paddle with the following ke
 
 The game will play until a predetermined score limit is reached.
 
-## Audio Manager (TODO)
+## Audio Manager
 
 The **Audio Manager** is responsible for playing sound effects and music throughout the game. It includes functions to load, play, and stop sounds, making it easy to integrate new audio assets.
 
@@ -76,12 +76,11 @@ In the `GameManager`, you can play sounds like so:
 
 ```cpp
 void GameManager::onBallCollision() {
-    audioManager.playSound("hit_paddle");
+    AudioManager::getInstance().enqueueMessage(AudioMessage(AudioAction::PLAY_SOUND,"bounce",100.f));
 }
 
 void GameManager::scoreCallback(int player) {
-    audioManager.playSound("score");
-    audioManager.playMusic("bg_music");  // Start background music
+    AudioManager::getInstance().enqueueMessage(AudioMessage(AudioAction::PLAY_SOUND,"score",100.f));
 }
 ```
 

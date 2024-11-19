@@ -18,6 +18,8 @@ void Ball::update(float deltaTime) {
     if (shape.getPosition().y - shape.getRadius() <= 0 ||
         shape.getPosition().y + shape.getRadius() >= Window::getInstance().getSize().y) {
         velocity.y = -velocity.y;
+        AudioManager::getInstance().enqueueMessage(AudioMessage(AudioAction::PLAY_SOUND,"bounce",100.f));
+
     }
     if (shape.getPosition().x - shape.getRadius() <= 0) {
         if (onBallOutOfBounds) {
@@ -59,11 +61,13 @@ void Ball::checkCollisionWithPaddle(sf::RectangleShape &paddleBounds) {
         if (speed <= 1000) {
             speed += 5;
         }
+        AudioManager::getInstance().enqueueMessage(AudioMessage(AudioAction::PLAY_SOUND,"bounce",100.f));
     }
 }
 
 void Ball::setBallOutOfBoundsCallback(Ball::BallOutOfBoundsCallback callback) {
     onBallOutOfBounds = callback;
+
 
 }
 sf::Vector2f Ball::getRandomVelocity() {

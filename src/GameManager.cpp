@@ -15,6 +15,19 @@ GameManager::GameManager()  : window(Window::getInstance("Ping Pong Game",800,60
     rightScoreText.setCharacterSize(30);
     rightScoreText.setFillColor(sf::Color::White);
     rightScoreText.setPosition(window.getSize().x - 150.f, 10.f);
+
+
+    UIText.setFont(font);
+    UIText.setCharacterSize(20);
+    UIText.setFillColor(sf::Color::White);
+    UIText.setPosition(10.f, window.getSize().y-20);
+    // Set Up Audio
+    AudioManager::getInstance().playBackgroundMusic("resources/sounds/bg/bg_music2.wav");
+    AudioManager::getInstance().setBackgroundMusicVolume(50);
+    AudioManager::getInstance().loadSound("bounce", "resources/sounds/bounce.wav");
+    AudioManager::getInstance().loadSound("score", "resources/sounds/score.wav");
+    AudioManager::getInstance().start();
+
 }
 
 void GameManager::drawDottedLine(sf::RenderWindow &window, float startY, float endY, float x, float dotLength,
@@ -33,7 +46,20 @@ void GameManager::drawDottedLine(sf::RenderWindow &window, float startY, float e
 
 void GameManager::startGame() {
     ball.setBallOutOfBoundsCallback([this](int player){this->scoreCallback(player);});
+    static bool isKeyReleased = true;
     while (window.isOpen()) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::M)) {
+            if (isKeyReleased) {  // Only toggle on initial key press
+                if (AudioManager::getInstance().IsBackgroundMusicPlaying()) {
+                    AudioManager::getInstance().stopBackgroundMusic();
+                } else {
+                    AudioManager::getInstance().playBackgroundMusic("resources/sounds/bg/bg_music2.wav");
+                }
+                isKeyReleased = false;  // Mark key as pressed
+            }
+        } else {
+            isKeyReleased = true;  // Reset the state when the key is released
+        }
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
@@ -60,19 +86,21 @@ void GameManager::startGame() {
         ball.draw();
         playerPaddle.draw();
         opponentPaddle.draw();
-        drawScores();
+        drawUI();
 
         window.display();
     }
 
 }
 
-void GameManager::drawScores() {
+void GameManager::drawUI() {
     leftScoreText.setString(std::to_string(leftScore));
     rightScoreText.setString(std::to_string(rightScore));
-
+    UIText.setString("Press M to mute Background Music");
     window.draw(leftScoreText);
     window.draw(rightScoreText);
+    window.draw(UIText);
+
 }
 
 void GameManager::scoreCallback(int player) {
@@ -81,4 +109,6 @@ void GameManager::scoreCallback(int player) {
     } else if (player == -1) {
         rightScore++;
     }
+    AudioManager::getInstance().enqueueMessage(AudioMessage(AudioAction::PLAY_SOUND,"score",50.f));
+
 }

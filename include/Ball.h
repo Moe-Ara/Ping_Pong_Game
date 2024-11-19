@@ -8,6 +8,8 @@
 #include <functional>
 #include <iostream>
 #include <random>
+#include "AudioManager.h"
+
 class Ball {
 public:
     using BallOutOfBoundsCallback = std::function<void(int)>;
